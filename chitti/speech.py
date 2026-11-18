@@ -12,6 +12,12 @@ import requests
 
 SARVAM_URL = "https://api.sarvam.ai"
 
+# Chitti's voice, picked by ear in the Sarvam playground on 18 Nov 2026:
+# Simran sounded the warmest and most natural, and 1.2x felt more
+# conversational than 1.0x or 0.9x. Check both with an elder before locking.
+VOICE = "simran"
+PACE = 1.2
+
 # Lesson 2b: "keyterms" tell the ears which words to expect. Short, colloquial
 # words like சாப்டீங்களா are the hardest to catch, so we list them here.
 # Up to 50 terms. Add any word Chitti keeps mishearing.
@@ -57,8 +63,8 @@ def text_to_speech(text: str) -> bytes:
             "text": text[:2500],
             "language_code": "ta-IN",
             "model": "bulbul:v3",
-            "speaker": "kavitha",  # try others: see the speaker list in the README
-            "pace": 0.9,  # a little slower than normal, kinder for elders
+            "speaker": VOICE,
+            "pace": PACE,
         },
         timeout=30,
     )

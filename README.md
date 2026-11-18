@@ -41,7 +41,7 @@ mic -> Sarvam speech-to-text -> Claude (the brain) -> Sarvam text-to-speech -> s
 Do these yourself; ask in the project thread when stuck.
 
 1. **Run it and time it.** Note the round-trip time it prints for 5 questions. Our target is under 3 seconds.
-2. **Change the voice.** In `speech.py`, try speakers `kavitha`, `priya`, `ritu`, `gokul` and `mani`. Pick the one your grandmother likes best.
+2. **Check the voice.** Chitti uses `simran` at 1.2x pace (`VOICE` and `PACE` in `speech.py`), picked in the Sarvam playground. Play it to your grandmother and change it if she prefers another.
 3. **Change the personality.** Edit `SYSTEM_PROMPT` in `brain.py` so Chitti calls the user "Paati" or "Thatha". See how one line changes the product.
 4. **Break it.** Ask about chest pain. Does Chitti say to call 108? Write down any answer that worries you: that list becomes our safety test set.
 5. **Test with a real elder.** Let one family member use it for 10 minutes. Write down what they said that Chitti misheard.
