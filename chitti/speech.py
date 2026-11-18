@@ -5,11 +5,26 @@ Audio goes up, text comes back; text goes up, audio comes back.
 Docs: https://docs.sarvam.ai
 """
 import base64
+import json
 import os
 
 import requests
 
 SARVAM_URL = "https://api.sarvam.ai"
+
+# Lesson 2b: "keyterms" tell the ears which words to expect. Short, colloquial
+# words like சாப்டீங்களா are the hardest to catch, so we list them here.
+# Up to 50 terms. Add any word Chitti keeps mishearing.
+KEYTERMS = [
+    "சாப்டீங்களா",
+    "என்ன பண்றீங்க",
+    "மாத்திரை",
+    "மூட்டு வலி",
+    "நெஞ்சு வலி",
+    "தூக்கம் வரல",
+    "போர் அடிக்குது",
+    "சிட்டி",
+]
 
 
 def _headers() -> dict:
@@ -22,7 +37,11 @@ def speech_to_text(wav_bytes: bytes) -> str:
         f"{SARVAM_URL}/speech-to-text",
         headers=_headers(),
         files={"file": ("speech.wav", wav_bytes, "audio/wav")},
-        data={"model": "saaras:v4", "language_code": "ta-IN"},
+        data={
+            "model": "saaras:v4",
+            "language_code": "ta-IN",
+            "keyterms": json.dumps(KEYTERMS, ensure_ascii=False),
+        },
         timeout=30,
     )
     response.raise_for_status()
